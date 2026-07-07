@@ -2,7 +2,7 @@
 	<div class="SkillBar">
 		<div class="SkillBar__head">
 			<span class="SkillBar__name">{{ name }}</span>
-			<span v-if="experienceLabel" class="SkillBar__xp kicker">{{
+			<span v-if="experienceLabel" class="SkillBar__xp">{{
 				experienceLabel
 			}}</span>
 		</div>
@@ -72,20 +72,21 @@ export default {
 	}
 
 	&__name {
-		font-size: var(--fs-m);
-		font-weight: var(--fw-m);
+		font-size: var(--fs-s);
 		color: var(--c-text);
 	}
 
 	&__xp {
+		font-size: var(--fs-xs);
 		color: var(--c-text-muted);
 	}
 
 	&__track {
 		width: 100%;
-		height: 1.2rem;
+		height: 0.9rem;
+		padding: 1px;
 		background-color: var(--c-surface-2);
-		border: var(--rule);
+		border: var(--bw) solid var(--c-border);
 	}
 
 	&__fill {

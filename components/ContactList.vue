@@ -1,6 +1,6 @@
 <template>
-	<header class="ProfileCard">
-		<div class="ProfileCard__avatar">
+	<div class="ContactList">
+		<div class="ContactList__avatar">
 			<img
 				:src="avatarSrc"
 				:alt="name"
@@ -9,36 +9,28 @@
 			/>
 		</div>
 
-		<div class="ProfileCard__info">
-			<p v-if="ageLabel" class="ProfileCard__byline kicker">
-				{{ ageLabel }}
-			</p>
+		<p v-if="ageLabel" class="ContactList__age kicker">{{ ageLabel }}</p>
 
-			<h1 class="ProfileCard__name">{{ name }}</h1>
-
-			<p v-if="about" class="ProfileCard__about">{{ about }}</p>
-
-			<ul v-if="contacts.length" class="ProfileCard__links">
-				<li v-for="(link, i) in contacts" :key="i">
-					<a
-						class="ProfileCard__link"
-						:href="link.href || '#'"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span
-							class="ProfileCard__link-icon"
-							:style="{ '--icon': `url(${link.iconSrc})` }"
-							aria-hidden="true"
-						/>
-						<span v-if="link.text" class="ProfileCard__link-text">{{
-							link.text
-						}}</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</header>
+		<ul v-if="contacts.length" class="ContactList__links">
+			<li v-for="(link, i) in contacts" :key="i">
+				<a
+					class="ContactList__link"
+					:href="link.href || '#'"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<span
+						class="ContactList__icon"
+						:style="{ '--icon': `url(${link.iconSrc})` }"
+						aria-hidden="true"
+					/>
+					<span v-if="link.label" class="ContactList__label">{{
+						link.label
+					}}</span>
+				</a>
+			</li>
+		</ul>
+	</div>
 </template>
 
 <script>
@@ -70,13 +62,12 @@ function resolveAsset(path) {
 }
 
 export default {
-	name: 'ProfileCard',
+	name: 'ContactList',
 
 	props: {
 		name: { type: String, default: '' },
 		avatar: { type: String, default: '' },
 		birthDate: { type: String, default: '' },
-		about: { type: String, default: '' },
 		links: { type: Array, default: () => [] },
 	},
 
@@ -112,10 +103,12 @@ export default {
 		contacts() {
 			return this.links
 				.map((link) => ({
-					...link,
+					href: link.href,
 					iconSrc: resolveAsset(link.icon),
+					// В качестве подписи — явный текст либо сам адрес ссылки
+					label: link.text || link.href || '',
 				}))
-				.filter((link) => link.iconSrc || link.text);
+				.filter((link) => link.iconSrc || link.label);
 		},
 	},
 
@@ -137,21 +130,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ProfileCard {
+.ContactList {
 	display: flex;
-	align-items: flex-start;
-	gap: var(--gap-l);
+	flex-direction: column;
 
 	&__avatar {
-		flex-shrink: 0;
-
-		width: 15rem;
-		height: 15rem;
-
+		width: 100%;
+		aspect-ratio: 3 / 4; // портретный кадр во всю ширину колонки
 		overflow: hidden;
 
-		border-radius: 50%;
-		border: 2px solid var(--c-border);
+		border: var(--bw) solid var(--c-border);
 		background-color: var(--c-surface-2);
 
 		img {
@@ -162,105 +150,72 @@ export default {
 		}
 	}
 
-	&__info {
-		flex: 1;
-		min-width: 0;
-	}
-
-	&__byline {
+	&__age {
+		margin-top: var(--gap-s);
+		text-align: center;
 		color: var(--c-text-muted);
-	}
-
-	&__name {
-		margin-top: var(--gap-xs);
-		font-size: var(--fs-xl);
-		font-weight: var(--fw-l);
-		letter-spacing: -0.01em;
-	}
-
-	&__about {
-		margin-top: var(--gap-m);
-		max-width: 62ch;
-		color: var(--c-text);
-		white-space: pre-line;
-
-		// Первый абзац — с буквицей, как в газете
-		&::first-letter {
-			float: left;
-			margin-right: 0.8rem;
-			font-size: 5.5rem;
-			font-weight: var(--fw-m);
-			line-height: 0.8;
-		}
 	}
 
 	&__links {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0;
+		flex-direction: column;
 		margin-top: var(--gap-l);
 
-		border: var(--rule);
-		border-right: none; // правую границу даёт каждый элемент
-		width: fit-content;
+		border: var(--bw) solid var(--c-border);
+		border-bottom: none; // нижнюю границу даёт каждый пункт
 	}
 
 	&__link {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--gap-xs);
+		display: flex;
+		align-items: stretch;
+		min-height: 4.4rem;
 
-		min-width: 4.6rem;
-		min-height: 4.6rem;
-		padding: 0 var(--gap-s);
-
+		font-size: var(--fs-s);
 		color: var(--c-text);
-		text-decoration: none;
 
-		border-right: var(--rule);
-
-		transition:
-			var(--theme-transition),
-			color 0.15s ease;
+		border-bottom: var(--bw) solid var(--c-border);
 
 		&:hover {
 			color: var(--c-bg);
-			background-color: var(--c-text);
+			background-color: var(--c-text-strong);
 		}
 	}
 
-	&__link-icon {
-		display: inline-block;
-		width: 2rem;
-		height: 2rem;
+	&__icon {
+		flex-shrink: 0;
 
-		background-color: currentColor;
+		display: inline-flex;
+		width: 4rem;
 
-		// Иконка красится в currentColor через маску —
-		// поэтому корректно адаптируется под тему и инверсию при ховере.
-		mask: var(--icon) center / contain no-repeat;
-		-webkit-mask: var(--icon) center / contain no-repeat;
+		color: currentColor;
+
+		border-right: var(--bw) solid var(--c-border);
+
+		// сама иконка — маска в currentColor
+		&::before {
+			content: '';
+			display: block;
+			width: 1.7rem;
+			height: 1.7rem;
+			margin: auto;
+
+			background-color: currentColor;
+			mask: var(--icon) center / contain no-repeat;
+			-webkit-mask: var(--icon) center / contain no-repeat;
+		}
 	}
 
-	&__link-text {
-		font-family: var(--ff-label);
-		font-size: var(--fs-xs);
-		font-weight: 700;
+	&__label {
+		min-width: 0;
+		padding: var(--gap-xs) var(--gap-s);
+
+		overflow-wrap: anywhere;
 	}
 }
 
-@media (max-width: 640px) {
-	.ProfileCard {
-		gap: var(--gap-m);
-
-		&__avatar {
-			width: 10rem;
-			height: 10rem;
-		}
-
-		&__about::first-letter {
-			font-size: 4.5rem;
-		}
+@media (max-width: 768px) {
+	.ContactList__age {
+		text-align: left;
 	}
 }
 </style>

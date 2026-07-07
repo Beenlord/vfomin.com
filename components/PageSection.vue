@@ -22,17 +22,25 @@ export default {
 
 <style lang="scss" scoped>
 .PageSection {
-	border-top: var(--rule-thick);
+	display: flex;
+	flex-direction: column;
 
 	&__title {
-		margin: var(--gap-s) 0 var(--gap-l);
+		margin-bottom: var(--gap-m);
+		padding-bottom: var(--gap-s);
 
 		font-family: var(--ff-label);
 		font-size: var(--fs-xs);
 		font-weight: 700;
 		letter-spacing: var(--ls-label);
 		text-transform: uppercase;
-		color: var(--c-text);
+		color: var(--c-text-strong);
+
+		border-bottom: var(--bw) solid var(--c-border);
+	}
+
+	&__body {
+		flex: 1;
 	}
 }
 </style>

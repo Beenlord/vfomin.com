@@ -78,12 +78,11 @@ export default {
 	align-items: center;
 	gap: var(--gap-xs);
 
-	padding: 0.8rem var(--gap-s);
+	padding: 0.7rem var(--gap-s);
 
 	color: var(--c-text);
 
-	background-color: var(--c-bg);
-	border: var(--rule);
+	border: var(--bw) solid var(--c-border);
 
 	transition:
 		var(--theme-transition),
@@ -91,13 +90,13 @@ export default {
 
 	&:hover {
 		color: var(--c-bg);
-		background-color: var(--c-text);
+		background-color: var(--c-text-strong);
 	}
 
 	&__icon {
 		display: inline-flex;
-		width: 1.8rem;
-		height: 1.8rem;
+		width: 1.7rem;
+		height: 1.7rem;
 
 		svg {
 			width: 100%;

@@ -64,10 +64,9 @@ export default {
 	flex-direction: column;
 
 	color: var(--c-text);
-	text-decoration: none;
 
-	background-color: var(--c-bg);
-	border: var(--rule);
+	background-color: var(--c-surface);
+	border: var(--bw) solid var(--c-border);
 
 	transition:
 		var(--theme-transition),
@@ -76,7 +75,7 @@ export default {
 
 	&:hover {
 		transform: translate(-4px, -4px);
-		box-shadow: var(--shadow-hard-accent);
+		box-shadow: var(--shadow-hard);
 	}
 
 	&__cover {
@@ -87,7 +86,8 @@ export default {
 		aspect-ratio: 16 / 10;
 		overflow: hidden;
 
-		border-bottom: var(--rule);
+		background-color: var(--c-surface-2);
+		border-bottom: var(--bw) solid var(--c-border);
 
 		img {
 			width: 100%;
@@ -101,7 +101,7 @@ export default {
 		font-family: var(--ff-title);
 		font-size: var(--fs-xl);
 		font-weight: var(--fw-l);
-		color: var(--c-text);
+		color: var(--c-text-muted);
 	}
 
 	&__body {
@@ -110,7 +110,7 @@ export default {
 
 	&__title {
 		font-size: var(--fs-m);
-		font-weight: var(--fw-m);
+		font-weight: var(--fw-l);
 	}
 
 	&__desc {

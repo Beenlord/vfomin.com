@@ -26,7 +26,7 @@ body {
 	min-height: 100dvh;
 
 	font-size: var(--fs-s);
-	line-height: 1.45;
+	line-height: 1.5;
 	color: var(--c-text);
 
 	transition: var(--theme-transition);
@@ -36,24 +36,24 @@ h1,
 h2,
 h3 {
 	font-family: var(--ff-title);
-	font-weight: var(--fw-m);
-	line-height: 1.05;
+	font-weight: var(--fw-l);
+	line-height: 1.1;
+	color: var(--c-text-strong);
 }
 
 a {
 	color: var(--c-text);
-	text-decoration: underline;
-	text-underline-offset: 0.2em;
+	text-decoration: none;
 	transition: color 0.15s ease;
 
 	&:hover {
-		color: var(--c-accent-strong);
+		color: var(--c-text-muted);
 	}
 }
 
 ::selection {
 	color: var(--c-bg);
-	background-color: var(--c-accent);
+	background-color: var(--c-text-strong);
 }
 
 /* Рубрика-капс — общий утилитарный класс */
@@ -70,12 +70,12 @@ a {
 	width: 100%;
 	max-width: var(--pg-max-width);
 	margin: 0 auto;
-	padding-inline: var(--pg-pad);
 }
 
 @media (max-width: 640px) {
 	:root {
 		--pg-pad: var(--gap-m);
-		--fs-xl: 5rem;
+		--cell-pad: var(--gap-m);
+		--fs-xl: 4.4rem;
 	}
 }
