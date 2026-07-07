@@ -146,7 +146,7 @@ export default {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			filter: grayscale(1); // газетная полутоновая печать
+			filter: grayscale(.7); // газетная полутоновая печать
 		}
 	}
 
