@@ -3,7 +3,7 @@ export default {
 	description: 'SEO Описание моего портфолио',
 
 	name: 'Владимир Фомин',
-	position: 'Профессиональная должность', // подзаголовок под именем
+	tags: ['frontend', 'backend', 'fullstack', 'gamedev'], // теги-специализации под именем
 	avatar: '@/assets/i/me.webp',
 	birthDate: '02.04.2000',
 

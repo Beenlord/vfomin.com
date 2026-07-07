@@ -1,7 +1,12 @@
 <template>
 	<header class="AppHeader">
 		<h1 class="AppHeader__name">{{ name }}</h1>
-		<p v-if="position" class="AppHeader__position">{{ position }}</p>
+
+		<ul v-if="tags.length" class="AppHeader__tags">
+			<li v-for="(tag, i) in tags" :key="i" class="AppHeader__tag">
+				#{{ tag }}
+			</li>
+		</ul>
 	</header>
 </template>
 
@@ -11,7 +16,7 @@ export default {
 
 	props: {
 		name: { type: String, default: '' },
-		position: { type: String, default: '' },
+		tags: { type: Array, default: () => [] },
 	},
 };
 </script>
@@ -26,14 +31,16 @@ export default {
 		line-height: 1.05;
 	}
 
-	&__position {
-		margin-top: var(--gap-s);
+	&__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap-s);
+		margin-top: var(--gap-m);
+	}
 
-		font-family: var(--ff-label);
-		font-size: var(--fs-xs);
-		font-weight: 700;
-		letter-spacing: var(--ls-label);
-		text-transform: uppercase;
+	&__tag {
+		font-size: var(--fs-s);
+		letter-spacing: 0.03em;
 		color: var(--c-text-muted);
 	}
 }

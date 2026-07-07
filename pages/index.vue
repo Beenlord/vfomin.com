@@ -10,10 +10,7 @@
 
 				<div class="Sheet__body">
 					<div class="Sheet__name PageIndex__block">
-						<AppHeader
-							:name="config.name"
-							:position="config.position"
-						/>
+						<AppHeader :name="config.name" :tags="config.tags" />
 					</div>
 
 					<aside class="Sheet__aside">
@@ -229,7 +226,6 @@ export default {
 }
 
 .PageIndex {
-
 	&__lead {
 		max-width: 70ch;
 		color: var(--c-text);
