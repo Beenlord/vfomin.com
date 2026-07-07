@@ -1,0 +1,33 @@
+@import 'reset-css';
+
+@import 'staff/reset';
+@import 'staff/vars';
+@import 'staff/anim';
+
+:root {
+	font-size: 8px;
+	font-family: var(--ff-main), serif;
+}
+
+html,
+body {
+	max-width: 100%;
+	font-size: var(--fs-s);
+	color: var(--txt-color);
+}
+
+html {
+	min-height: 100vh;
+	min-height: 100dvh;
+
+    overflow: hidden;
+    overflow-y: scroll;
+
+	background: {
+		color: var(--bg-color);
+		//image: url('/leaf.png');
+		//size: 300%;
+		position: center;
+		repeat: repeat;
+	}
+}

@@ -1,18 +1,24 @@
 {
-  "name": "vfomin",
-  "private": true,
-  "version": "0.0.1",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.0.6",
-    "tailwindcss": "^4.0.6"
-  },
-  "devDependencies": {
-    "vite": "^6.1.0"
-  }
+	"name": "wedding.vfomin.com",
+	"scripts": {
+		"dev": "nuxt",
+		"build": "nuxt build",
+		"start": "nuxt start",
+		"format": "prettier . --write",
+		"format:check": "prettier . --check"
+	},
+	"dependencies": {
+		"@nuxtjs/axios": "^5.13.6",
+		"axios": "^1.18.0",
+		"canvas-confetti": "^1.9.4",
+		"embla-carousel": "^8.6.0",
+		"googleapis": "^173.0.0",
+		"nuxt": "^2.18.1",
+		"reset-css": "^5.0.2"
+	},
+	"devDependencies": {
+		"prettier": "^3.8.4",
+		"sass": "^1.76.0",
+		"sass-loader": "^10.5.2"
+	}
 }

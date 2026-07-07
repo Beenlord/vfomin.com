@@ -1,0 +1,49 @@
+:root {
+	--bg-color: #fad4da;
+	--bg-color-paper: rgba(244, 240, 242, .93);
+
+	--txt-color: #5e3032;
+	--txt-color-second: #999;
+	--txt-color-accent: #c51a8c; // #FD3BB9;
+	--txt-color-current: #b91112;
+
+	--border: 1px solid rgba(197, 26, 140, 0.53);
+	--border-active: 1px solid #fd3bb9;
+
+	--shadow: 3px 3px 0 3px #f4f0f2;
+
+	--outline: 2px solid transparent;
+	--outline-active: 2px solid #fd3bb9;
+
+	--gap-s: 1rem; // 8px
+	--gap-m: 1.5rem; // 12px
+	--gap-l: 3rem; // 24px
+	--gap-xl: 4rem; // 32px
+
+	--ff-main: 'CormorantSC', Arial, Times;
+	--ff-title: 'CormorantSC', Arial, Times;
+	--ff-subtitle: 'ComforterBrush', Arial, Times;
+
+	--fs-s: 2rem; // 16px
+	--fs-m: 2.5rem; // 20px
+	--fs-l: 4rem; // 32px
+	--fs-xl: 5rem; // 48px
+
+	--fw-s: 500; // slim
+	--fw-m: 600; // normal
+	--fw-l: 700; // bold
+
+    --f-p: var(--fw-m) var(--fs-s)/1.2 var(--ff-main);
+    --f-h2: var(--fw-m) var(--fs-l)/1 var(--ff-main);
+    --f-h1: var(--fw-m) var(--fs-xl)/1 var(--ff-main);
+    --f-h3: var(--fw-s) var(--fs-l)/0 var(--ff-subtitle);
+    --f-h3-1: var(--fw-s) var(--fs-l)/1 var(--ff-subtitle);
+
+	--pg-min-width: 375px;
+	--pg-max-width: 475px;
+	--pg-gap: 48px;
+
+    --vw-index: calc(
+            clamp(var(--pg-min-width), 100vw, var(--pg-max-width)) / 100
+    );
+}

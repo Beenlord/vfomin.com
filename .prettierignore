@@ -1,0 +1,7 @@
+node_modules
+.nuxt
+dist
+coverage
+public/app/assets
+js/api/**/*.gen.ts
+openapi.json
