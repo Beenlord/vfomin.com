@@ -1,49 +1,91 @@
+/*
+ * Дизайн-токены и темы. Газетно-брутальный минимализм:
+ * жёсткие линейки, монохром, точечный зелёный акцент.
+ *
+ * Цвета вынесены в CSS-переменные — чтобы поменять палитру,
+ * достаточно отредактировать значения ниже.
+ * Тема переключается атрибутом data-theme на <html>:
+ *   без атрибута / [data-theme='light'] — «бумага» (день),
+ *   [data-theme='dark']                 — «краска» (ночь, инверсия).
+ */
+
 :root {
-	--bg-color: #fad4da;
-	--bg-color-paper: rgba(244, 240, 242, .93);
+	/* ===================== Палитра — день (бумага) ===================== */
+	--c-bg: #ffffff; // бумага
+	--c-surface: #ffffff; // без заливок — брутализм держится на границах
+	--c-surface-2: #eeeeec; // редкие подложки, пустая часть шкалы
+	--c-text: #111111; // типографская краска
+	--c-text-muted: #565650;
+	--c-border: #111111; // жёсткие чёрные линии
 
-	--txt-color: #5e3032;
-	--txt-color-second: #999;
-	--txt-color-accent: #c51a8c; // #FD3BB9;
-	--txt-color-current: #b91112;
+	/* Акцент — пастельно-зелёный (используется точечно) */
+	--c-accent: #7bbf8a;
+	--c-accent-strong: #4f9a63;
+	--c-on-accent: #0d1f12;
 
-	--border: 1px solid rgba(197, 26, 140, 0.53);
-	--border-active: 1px solid #fd3bb9;
+	/* Газетные линейки */
+	--rule: 1px solid var(--c-border);
+	--rule-thick: 3px solid var(--c-border);
 
-	--shadow: 3px 3px 0 3px #f4f0f2;
+	/* Жёсткие тени без размытия (нео-брутализм) */
+	--shadow-hard: 5px 5px 0 var(--c-text);
+	--shadow-hard-accent: 5px 5px 0 var(--c-accent);
 
-	--outline: 2px solid transparent;
-	--outline-active: 2px solid #fd3bb9;
+	/* ===================== Шрифты ===================== */
+	/* Текст — Times New Roman (газетный засечный),
+	   рубрики/подписи — Helvetica капсом.
+	   Для полностью Helvetica-варианта замените --ff-base и --ff-title
+	   на значение --ff-label. */
+	--ff-base: 'Times New Roman', Times, Georgia, serif;
+	--ff-title: 'Times New Roman', Times, Georgia, serif;
+	--ff-label: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-	--gap-s: 1rem; // 8px
-	--gap-m: 1.5rem; // 12px
-	--gap-l: 3rem; // 24px
-	--gap-xl: 4rem; // 32px
+	/* ===================== Размеры шрифта ===================== */
+	/* Базовый font-size корня — 8px (см. main.scss), 1rem = 8px */
+	--fs-xs: 1.5rem; // 12px — рубрики, подписи
+	--fs-s: 2.2rem; // ~17px — основной текст
+	--fs-m: 2.8rem; // ~22px
+	--fs-l: 4rem; // 32px — заголовки секций
+	--fs-xl: 7rem; // 56px — имя / нейм-плейт
 
-	--ff-main: 'CormorantSC', Arial, Times;
-	--ff-title: 'CormorantSC', Arial, Times;
-	--ff-subtitle: 'ComforterBrush', Arial, Times;
+	--fw-s: 400; // обычный
+	--fw-m: 700; // засечный «жирный»
+	--fw-l: 900; // максимально жирный
 
-	--fs-s: 2rem; // 16px
-	--fs-m: 2.5rem; // 20px
-	--fs-l: 4rem; // 32px
-	--fs-xl: 5rem; // 48px
+	/* Межбуквенный интервал для капса-рубрик */
+	--ls-label: 0.18em;
 
-	--fw-s: 500; // slim
-	--fw-m: 600; // normal
-	--fw-l: 700; // bold
+	/* ===================== Отступы ===================== */
+	--gap-xs: 0.8rem; // 6.4px
+	--gap-s: 1.5rem; // 12px
+	--gap-m: 2.5rem; // 20px
+	--gap-l: 4rem; // 32px
+	--gap-xl: 6rem; // 48px
 
-    --f-p: var(--fw-m) var(--fs-s)/1.2 var(--ff-main);
-    --f-h2: var(--fw-m) var(--fs-l)/1 var(--ff-main);
-    --f-h1: var(--fw-m) var(--fs-xl)/1 var(--ff-main);
-    --f-h3: var(--fw-s) var(--fs-l)/0 var(--ff-subtitle);
-    --f-h3-1: var(--fw-s) var(--fs-l)/1 var(--ff-subtitle);
+	/* Брутализм — без скруглений */
+	--radius-s: 0;
+	--radius-m: 0;
+	--radius-l: 0;
 
-	--pg-min-width: 375px;
-	--pg-max-width: 475px;
-	--pg-gap: 48px;
+	/* ===================== Раскладка ===================== */
+	--pg-max-width: 900px;
+	--pg-pad: var(--gap-l);
 
-    --vw-index: calc(
-            clamp(var(--pg-min-width), 100vw, var(--pg-max-width)) / 100
-    );
+	/* Плавный переход при смене темы */
+	--theme-transition:
+		background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ===================== Палитра — ночь (инверсия) ===================== */
+:root[data-theme='dark'] {
+	--c-bg: #111111;
+	--c-surface: #111111;
+	--c-surface-2: #262622;
+	--c-text: #f4f2ea; // белила газетной бумаги
+	--c-text-muted: #a6a49a;
+	--c-border: #f4f2ea;
+
+	--c-accent: #7bbf8a;
+	--c-accent-strong: #8ed19c;
+	--c-on-accent: #0d1f12;
 }

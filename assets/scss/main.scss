@@ -6,28 +6,76 @@
 
 :root {
 	font-size: 8px;
-	font-family: var(--ff-main), serif;
-}
-
-html,
-body {
-	max-width: 100%;
-	font-size: var(--fs-s);
-	color: var(--txt-color);
+	font-family: var(--ff-base);
 }
 
 html {
 	min-height: 100vh;
 	min-height: 100dvh;
 
-    overflow: hidden;
-    overflow-y: scroll;
+	overflow-x: hidden;
+	overflow-y: scroll;
 
-	background: {
-		color: var(--bg-color);
-		//image: url('/leaf.png');
-		//size: 300%;
-		position: center;
-		repeat: repeat;
+	background-color: var(--c-bg);
+	transition: var(--theme-transition);
+}
+
+body {
+	max-width: 100%;
+	min-height: 100vh;
+	min-height: 100dvh;
+
+	font-size: var(--fs-s);
+	line-height: 1.45;
+	color: var(--c-text);
+
+	transition: var(--theme-transition);
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--ff-title);
+	font-weight: var(--fw-m);
+	line-height: 1.05;
+}
+
+a {
+	color: var(--c-text);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+	transition: color 0.15s ease;
+
+	&:hover {
+		color: var(--c-accent-strong);
+	}
+}
+
+::selection {
+	color: var(--c-bg);
+	background-color: var(--c-accent);
+}
+
+/* Рубрика-капс — общий утилитарный класс */
+.kicker {
+	font-family: var(--ff-label);
+	font-size: var(--fs-xs);
+	font-weight: 700;
+	letter-spacing: var(--ls-label);
+	text-transform: uppercase;
+}
+
+/* Центрирующий контейнер страницы */
+.container {
+	width: 100%;
+	max-width: var(--pg-max-width);
+	margin: 0 auto;
+	padding-inline: var(--pg-pad);
+}
+
+@media (max-width: 640px) {
+	:root {
+		--pg-pad: var(--gap-m);
+		--fs-xl: 5rem;
 	}
 }

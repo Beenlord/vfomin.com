@@ -4,6 +4,20 @@
 	margin: 0;
 }
 
-a {
-    color: var(--txt-color-accent);
+ul,
+ol {
+	list-style: none;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: none;
+	cursor: pointer;
 }
