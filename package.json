@@ -1,5 +1,5 @@
 {
-	"name": "wedding.vfomin.com",
+	"name": "vfomin.com",
 	"scripts": {
 		"dev": "nuxt",
 		"build": "nuxt build",
@@ -10,9 +10,6 @@
 	"dependencies": {
 		"@nuxtjs/axios": "^5.13.6",
 		"axios": "^1.18.0",
-		"canvas-confetti": "^1.9.4",
-		"embla-carousel": "^8.6.0",
-		"googleapis": "^173.0.0",
 		"nuxt": "^2.18.1",
 		"reset-css": "^5.0.2"
 	},
